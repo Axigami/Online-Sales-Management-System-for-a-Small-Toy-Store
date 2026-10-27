@@ -1,0 +1,27 @@
+# Hệ điều hành / editor
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+
+# File tạm của Office
+~$*
+*.tmp
+.~lock.*#
+
+# Python
+__pycache__/
+*.pyc
+
+# Sản phẩm sinh ra khi build báo cáo
+dist/
+
+# Video / file nặng -> để trên Drive, dán link vào docs/05_UI/03_prototype_va_video.md
+*.mp4
+*.mov
+*.avi
+*.mkv
+*.zip
+*.rar
+*.7z

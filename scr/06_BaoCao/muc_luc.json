@@ -1,0 +1,74 @@
+[
+  {
+    "so": 1,
+    "ten": "Giới thiệu và khảo sát hiện trạng",
+    "files": [
+      "docs/01_KhaoSat/01_chuong1_gioi_thieu.md",
+      "docs/01_KhaoSat/02_as_is.md",
+      "docs/01_KhaoSat/03_bien_ban_phong_van.md",
+      "docs/01_KhaoSat/04_bang_hoi.md",
+      "docs/01_KhaoSat/05_benchmark.md"
+    ]
+  },
+  {
+    "so": 2,
+    "ten": "Đặc tả yêu cầu",
+    "files": [
+      "docs/02_YeuCau/01_yeu_cau_chuc_nang.md",
+      "docs/02_YeuCau/02_yeu_cau_phi_chuc_nang.md"
+    ]
+  },
+  {
+    "so": 3,
+    "ten": "Mô hình hóa Use Case",
+    "files": [
+      "docs/03_UseCase/01_use_case_diagram.md",
+      "docs/03_UseCase/specs/UC02.md",
+      "docs/03_UseCase/specs/UC10.md",
+      "docs/03_UseCase/specs/UC11.md",
+      "docs/03_UseCase/specs/UC13.md",
+      "docs/03_UseCase/specs/UC14.md",
+      "docs/03_UseCase/specs/UC17.md",
+      "docs/03_UseCase/specs/UC21.md",
+      "docs/03_UseCase/specs/UC22.md"
+    ]
+  },
+  {
+    "so": 4,
+    "ten": "Mô hình hóa hành vi",
+    "files": [
+      "docs/04_ThietKe/01_activity/AD1.md",
+      "docs/04_ThietKe/01_activity/AD2.md",
+      "docs/04_ThietKe/02_sequence/SD1.md",
+      "docs/04_ThietKe/02_sequence/SD2.md",
+      "docs/04_ThietKe/02_sequence/SD3.md",
+      "docs/04_ThietKe/02_sequence/SD4.md"
+    ]
+  },
+  {
+    "so": 5,
+    "ten": "Mô hình hóa dữ liệu",
+    "files": [
+      "docs/04_ThietKe/03_class_diagram.md",
+      "docs/04_ThietKe/04_erd.md",
+      "docs/04_ThietKe/05_tu_dien_du_lieu.md"
+    ]
+  },
+  {
+    "so": 6,
+    "ten": "Thiết kế giao diện và Prototype",
+    "files": [
+      "docs/05_UI/01_man_hinh_khach_hang.md",
+      "docs/05_UI/02_man_hinh_admin.md",
+      "docs/05_UI/03_prototype_va_video.md",
+      "docs/05_UI/04_truy_vet_man_hinh_uc_yeu_cau.md"
+    ]
+  },
+  {
+    "so": 7,
+    "ten": "Kết luận, hạn chế, hướng phát triển",
+    "files": [
+      "docs/06_BaoCao/02_chuong7_ket_luan.md"
+    ]
+  }
+]
