@@ -1,4 +1,4 @@
-# Nhóm 5 – Hệ thống quản lý bán hàng trực tuyến cho cửa hàng đồ chơi nhỏ
+# Hệ thống quản lý bán hàng trực tuyến cho cửa hàng đồ chơi nhỏ
 
 *(giỏ hàng – đơn hàng – vận chuyển)*
 
@@ -20,7 +20,7 @@ Hướng dẫn chi tiết việc của từng người nằm trong thư mục [`
 
 ```text
 .
-├── docs/
+├── src/
 │   ├── 00_QuyUoc/      Quy ước chung: phạm vi, actor, danh sách UC, trạng thái, BR, mã, ma trận truy vết
 │   ├── 01_KhaoSat/     Chương 1: khảo sát, As-Is, phỏng vấn, bảng hỏi, benchmark
 │   ├── 02_YeuCau/      FR, NFR
