@@ -28,8 +28,4 @@ Hướng dẫn chi tiết việc của từng người nằm trong thư mục [`
 │   ├── 04_ThietKe/     Activity, Sequence, Class Diagram, ERD, từ điển dữ liệu
 │   ├── 05_UI/          Màn hình khách hàng (C1–C8), admin (A1–A5), prototype, truy vết
 │   └── 06_BaoCao/      Mục lục báo cáo, chương 7, theo dõi báo cáo + slide
-├── tasks/              Hướng dẫn + checklist từng thành viên
-├── scripts/            Công cụ kiểm tra / tiến độ / build báo cáo
-├── team.json           Danh sách thành viên + phạm vi được sửa
-└── .github/            CODEOWNERS, template PR/Issue, GitHub Actions
 ```
