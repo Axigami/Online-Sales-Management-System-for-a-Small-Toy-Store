@@ -6,19 +6,19 @@
 
 ## Các bước làm
 
-- [ ] Nhận bảng *Nhu cầu → Yêu cầu* từ Phương → viết thành FR theo mẫu *Hệ thống cho phép [actor] [làm gì]*, đánh mã FR01, FR02… → `docs/02_YeuCau/01_yeu_cau_chuc_nang.md`
-- [ ] Gán độ ưu tiên **MoSCoW** (Must / Should / Could) và gắn mã UC cho từng FR
-- [ ] Viết NFR theo 8 nhóm – mỗi dòng có chỉ số đo được → `02_yeu_cau_phi_chuc_nang.md`
-- [ ] Vẽ **Use Case Diagram**: 1 sơ đồ tổng quát (6 actor) + 3 sơ đồ module: (a) Mua hàng UC05–UC16; (b) Xử lý đơn & vận chuyển UC17–UC22; (c) Quản trị UC07–09, UC23–25 → `docs/03_UseCase/01_use_case_diagram.md`
-- [ ] Thể hiện đủ quan hệ đã chốt: Customer → Guest, Admin → Staff; UC13 «include» UC02, UC20; UC13 «extend» UC12, UC14
-- [ ] Vẽ **2 Activity Diagram có swimlane** (AD1, AD2) → `docs/04_ThietKe/01_activity/`
-- [ ] Gửi bản FR/UC cuối cho Việt và Quang **cuối tuần 1**
+- [x] Nhận bảng *Nhu cầu → Yêu cầu* từ Phương → viết thành FR theo mẫu *Hệ thống cho phép [actor] [làm gì]*, đánh mã FR01, FR02… → `docs/02_YeuCau/01_yeu_cau_chuc_nang.md`
+- [x] Gán độ ưu tiên **MoSCoW** (Must / Should / Could) và gắn mã UC cho từng FR
+- [x] Viết NFR theo 8 nhóm – mỗi dòng có chỉ số đo được → `02_yeu_cau_phi_chuc_nang.md`
+- [x] Vẽ **Use Case Diagram**: 1 sơ đồ tổng quát (6 actor) + 3 sơ đồ module: (a) Mua hàng UC05–UC16; (b) Xử lý đơn & vận chuyển UC17–UC22; (c) Quản trị UC07–09, UC23–25 → `docs/03_UseCase/01_use_case_diagram.md`
+- [x] Thể hiện đủ quan hệ đã chốt: Customer → Guest, Admin → Staff; UC13 «include» UC02, UC20; UC13 «extend» UC12, UC14
+- [x] Vẽ **2 Activity Diagram có swimlane** (AD1, AD2) → `docs/04_ThietKe/01_activity/`
+- [x] Gửi bản FR/UC cuối cho Việt và Quang **cuối tuần 1**
 
 ## Output cuối cùng
 
-- [ ] Bảng FR (khoảng 25–30 dòng, có mã, ưu tiên, UC) và bảng NFR (8 dòng)
-- [ ] 4 Use Case Diagram (1 tổng quát + 3 module) và bảng danh sách UC
-- [ ] 2 Activity Diagram có swimlane + 3–5 dòng giải thích mỗi sơ đồ
+- [x] Bảng FR (khoảng 25–30 dòng, có mã, ưu tiên, UC) và bảng NFR (8 dòng)
+- [x] 4 Use Case Diagram (1 tổng quát + 3 module) và bảng danh sách UC
+- [x] 2 Activity Diagram có swimlane + 3–5 dòng giải thích mỗi sơ đồ
 
 ## Phần của mình nối với ai (trả lời câu 3 khi báo cáo)
 
