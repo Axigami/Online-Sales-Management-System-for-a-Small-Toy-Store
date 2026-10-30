@@ -7,7 +7,7 @@
 ## Các bước làm
 
 - [x] Nhận danh sách UC và FR từ Nguyên
-- [ ] Đặc tả **8 UC: UC02, UC10, UC11, UC13, UC14, UC17, UC21, UC22** – mỗi UC 1 file trong `docs/03_UseCase/specs/` (Đã xong UC02, UC10; UC13 đã có mẫu)
+- [ ] Đặc tả **8 UC: UC02, UC10, UC11, UC13, UC14, UC17, UC21, UC22** – mỗi UC 1 file trong `docs/03_UseCase/specs/` (Đã hoàn thành: UC02, UC10, UC11, UC13)
 - [ ] Mỗi UC nêu ít nhất 2 luồng thay thế/ngoại lệ
 - [ ] Vẽ **4 Sequence Diagram** SD1–SD4 → `docs/04_ThietKe/02_sequence/`; tên thông điệp khớp tên phương thức trong Class Diagram của Quang
 - [ ] Đối chiếu luồng với Activity Diagram của Nguyên; sai khác thì báo Nguyên sửa
