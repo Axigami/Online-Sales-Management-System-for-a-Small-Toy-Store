@@ -161,14 +161,15 @@ classDiagram
 
 | Lớp | Thuộc tính chính | Phương thức | Ánh xạ bảng ERD |
 | --- | --- | --- | --- |
-| User | TODO | TODO | USER, ADDRESS |
-| Product | TODO | TODO | PRODUCT, PRODUCT_IMAGE |
-| Category | TODO | TODO | CATEGORY |
-| Cart – CartItem | TODO | TODO | CART, CART_ITEM |
-| Order – OrderItem | TODO | TODO | ORDERS, ORDER_ITEM |
-| Payment | TODO | TODO | PAYMENT |
-| Shipment | TODO | TODO | SHIPMENT, CARRIER |
-| Coupon | TODO | TODO | COUPON |
+| User | id, hoTen, email, sdt, vaiTro (Guest/Customer/Staff/Admin) | login(), logout() | USER, ADDRESS |
+| Product | id, ten, gia, tonKho | checkStock(soLuong), updateStock(delta) | PRODUCT, PRODUCT_IMAGE |
+| Category | id, ten | getProducts() | CATEGORY |
+| Cart – CartItem | Cart: id<br>CartItem: soLuong | addItem(sp, soLuong), removeItem(sp), calculateSubtotal() | CART, CART_ITEM |
+| Order – OrderItem | Order: id, trangThai, tongTien, phiShip, giamGia, ngayTao<br>OrderItem: soLuong, donGia (giá tại thời điểm mua) | calculateTotal(), updateStatus(trangThai), cancel() | ORDERS, ORDER_ITEM |
+| Payment | id, phuongThuc (COD / chuyển khoản / cổng mô phỏng), soTien, trangThai | pay(), refund() | PAYMENT |
+| Shipment | id, maVanDon, phi, trangThai | createShipment(), track() | SHIPMENT, CARRIER |
+| Coupon | id, ma, giaTri, hanDung | isValid(tongTien), apply(tongTien) | COUPON |
+
 
 ## Giải thích
 
