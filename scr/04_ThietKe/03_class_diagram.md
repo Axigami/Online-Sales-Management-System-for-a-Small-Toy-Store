@@ -1,7 +1,7 @@
 # Class Diagram (8 lớp lõi)
 
 > **Phụ trách:** Trần Vinh Quang  
-> **Trạng thái:** 🔴 Chưa làm  
+> **Trạng thái:** 🟠 Chờ duyệt
 > **Hạn:** —
 
 <!-- huong-dan:start -->
