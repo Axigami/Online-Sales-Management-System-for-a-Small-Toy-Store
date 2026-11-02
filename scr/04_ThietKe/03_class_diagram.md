@@ -103,13 +103,13 @@ classDiagram
         +checkStock(soLuong) boolean
         +updateStock(delta) void
     }
-    class Cart {
+    class Cart-CartItem {
         +int id
         +addItem(sp, soLuong) void
         +removeItem(sp) void
         +calculateSubtotal() decimal
     }
-    class Order {
+    class Order-OrderItem {
         +int id
         +String trangThai
         +decimal tongTien
