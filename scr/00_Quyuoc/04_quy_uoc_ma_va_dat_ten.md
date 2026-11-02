@@ -9,7 +9,7 @@ Script `scripts/check.py` kiểm tra tự động các quy ước dưới đây.
 | Use Case | `UC` + 2 chữ số, từ UC01 đến UC25 | UC13 |
 | Yêu cầu chức năng | `FR` + 2 chữ số trở lên | FR01, FR27 |
 | Yêu cầu phi chức năng | `NFR` + 2 chữ số | NFR03 |
-| Activity Diagram | AD1–AD2 | AD1 |
+| Activity Diagram | AD1–AD3 | AD1 |
 | Sequence Diagram | SD1–SD4 | SD2 |
 | Màn hình khách hàng | C1–C8 | C5 |
 | Màn hình admin | A1–A5 | A4 |

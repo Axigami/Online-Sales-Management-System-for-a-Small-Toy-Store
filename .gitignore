@@ -5,10 +5,14 @@ desktop.ini
 .vscode/
 .idea/
 
-# File tạm của Office
+# File tạm của Office / Draw.io
 ~$*
 *.tmp
 .~lock.*#
+.$*.bkp
+.$*.dtmp
+*.drawio.bkp
+.*.bkp
 
 # Python
 __pycache__/
