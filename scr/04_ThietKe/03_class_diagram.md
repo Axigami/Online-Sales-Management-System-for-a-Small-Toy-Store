@@ -173,5 +173,11 @@ classDiagram
 
 ## Giải thích
 
-- Quan hệ Association / Aggregation / Composition / Generalization đã dùng và lý do: TODO
-- Cách User thể hiện vai trò (kế thừa Customer/Staff/Admin hay thuộc tính `vai_tro`) và vì sao: TODO
+- Quan hệ Association / Aggregation / Composition / Generalization đã dùng và lý do:
+  - **Association** (cả 8 quan hệ): các lớp chỉ cần biết đến nhau, không ràng buộc vòng đời. Có kèm multiplicity, ví dụ Order – Shipment là `1` – `0..1` (đơn chưa xác nhận hoặc đã hủy thì chưa có vận đơn), Coupon – Order là `0..1` – `0..*` (mỗi đơn dùng tối đa một mã).
+  - **Cart – Product, Order – Product** là association nhiều–nhiều mang `soLuong` (và `donGia` = giá tại thời điểm mua). CartItem và OrderItem được gộp vào Cart và Order cho đủ 8 lớp; về bản chất là composition và sẽ tách thành bảng CART_ITEM, ORDER_ITEM ở ERD.
+  - **Aggregation, Generalization:** không dùng vì không có quan hệ "bộ phận – tổng thể tồn tại độc lập" hay lớp con nào cần thêm thuộc tính riêng.
+
+- Cách User thể hiện vai trò (kế thừa Customer/Staff/Admin hay thuộc tính `vai_tro`) và vì sao:
+  - Dùng **thuộc tính `vaiTro`** (Guest / Customer / Staff / Admin), không tách lớp con.
+  - Vì ba loại tài khoản có dữ liệu và hành vi giống nhau, chỉ khác quyền truy cập; khớp với bảng USER duy nhất trong ERD (cột `vai_tro`); giữ đúng phạm vi 8 lớp lõi; và dễ thêm vai trò mới mà không đổi cấu trúc. Quan hệ kế thừa giữa các actor đã thể hiện ở Use Case Diagram.
