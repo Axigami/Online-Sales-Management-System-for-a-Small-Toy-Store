@@ -38,11 +38,11 @@ sequenceDiagram
     Prod-->>ProdSvc: isAvailable (true / false)
     deactivate Prod
 
+    ProdSvc-->>Ctrl: checkResult (isAvailable)
+    deactivate ProdSvc
+
     %% 2. Rẽ nhánh theo kết quả kiểm tra tồn kho
     alt Đủ hàng trong kho (isAvailable == true)
-        ProdSvc-->>Ctrl: stockValid (true)
-        deactivate ProdSvc
-
         %% Thêm sản phẩm vào giỏ
         Ctrl->>Cart: addItem(productId, qty)
         activate Cart
@@ -67,19 +67,14 @@ sequenceDiagram
         deactivate Cart
 
         Ctrl-->>UI: 200 OK (Thành công, cartSummary)
-        deactivate Ctrl
         UI-->>Khach: Cập nhật Cart Badge & Hiển thị Toast "Thêm vào giỏ thành công!"
-        deactivate UI
 
     else Hết hàng hoặc Vượt quá tồn kho (isAvailable == false)
-        ProdSvc-->>Ctrl: stockError ("Số lượng yêu cầu vượt quá tồn kho khả dụng")
-        deactivate ProdSvc
-
         Ctrl-->>UI: 400 Bad Request (Thông báo lỗi tồn kho)
-        deactivate Ctrl
         UI-->>Khach: Hiển thị cảnh báo lỗi ("Không đủ số lượng trong kho")
-        deactivate UI
     end
+    deactivate Ctrl
+    deactivate UI
 ```
 
 ---
