@@ -67,10 +67,11 @@ sequenceDiagram
         deactivate Cart
 
         Ctrl-->>UI: 200 OK (Thành công, cartSummary)
+        deactivate Ctrl
         UI-->>Khach: Cập nhật Cart Badge & Hiển thị Toast "Thêm vào giỏ thành công!"
+        deactivate UI
 
     else Hết hàng hoặc Vượt quá tồn kho (isAvailable == false)
-        activate ProdSvc
         ProdSvc-->>Ctrl: stockError ("Số lượng yêu cầu vượt quá tồn kho khả dụng")
         deactivate ProdSvc
 
