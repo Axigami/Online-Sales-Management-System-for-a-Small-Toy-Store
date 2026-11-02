@@ -77,8 +77,82 @@ classDiagram
 
 ## Sơ đồ
 
-TODO (chèn hình)
+```mermaid
+classDiagram
+    direction TB
 
+    class User {
+        +int id
+        +String hoTen
+        +String email
+        +String sdt
+        +String vaiTro
+        +login() boolean
+        +logout() void
+    }
+    class Category {
+        +int id
+        +String ten
+        +getProducts() List
+    }
+    class Product {
+        +int id
+        +String ten
+        +decimal gia
+        +int tonKho
+        +checkStock(soLuong) boolean
+        +updateStock(delta) void
+    }
+    class Cart {
+        +int id
+        +addItem(sp, soLuong) void
+        +removeItem(sp) void
+        +calculateSubtotal() decimal
+    }
+    class Order {
+        +int id
+        +String trangThai
+        +decimal tongTien
+        +decimal phiShip
+        +datetime ngayTao
+        +calculateTotal() decimal
+        +updateStatus(trangThai) void
+        +cancel() void
+    }
+    class Payment {
+        +int id
+        +String phuongThuc
+        +decimal soTien
+        +String trangThai
+        +pay() boolean
+        +refund() void
+    }
+    class Shipment {
+        +int id
+        +String maVanDon
+        +decimal phi
+        +String trangThai
+        +createShipment() void
+        +track() String
+    }
+    class Coupon {
+        +int id
+        +String ma
+        +decimal giaTri
+        +date hanDung
+        +isValid(tongTien) boolean
+        +apply(tongTien) decimal
+    }
+
+    Category "1" --> "0..*" Product : chứa
+    User "1" --> "1" Cart : sở hữu
+    User "1" --> "0..*" Order : đặt
+    Cart "0..*" --> "0..*" Product : gồm (soLuong)
+    Order "0..*" --> "1..*" Product : gồm (soLuong, donGia)
+    Order "1" --> "1" Payment : thanh toán
+    Order "1" --> "0..1" Shipment : giao hàng
+    Coupon "0..1" --> "0..*" Order : áp dụng cho
+```
 ## Danh sách lớp và ánh xạ sang bảng
 
 | Lớp | Thuộc tính chính | Phương thức | Ánh xạ bảng ERD |
