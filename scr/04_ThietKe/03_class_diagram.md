@@ -153,6 +153,7 @@ classDiagram
     Order "1" --> "0..1" Shipment : giao hàng
     Coupon "0..1" --> "0..*" Order : áp dụng cho
 ```
+```
 ## Danh sách lớp và ánh xạ sang bảng
 
 | Lớp | Thuộc tính chính | Phương thức | Ánh xạ bảng ERD |
