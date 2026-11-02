@@ -103,18 +103,22 @@ classDiagram
         +checkStock(soLuong) boolean
         +updateStock(delta) void
     }
-    class CartCartItem {
+    class Cart["Cart-CartItem"] {
         +int id
+        +int soLuong
         +addItem(sp, soLuong) void
         +removeItem(sp) void
         +calculateSubtotal() decimal
     }
-    class OrderOrderItem {
+    class Order["Order-OrderItem"] {
         +int id
         +String trangThai
         +decimal tongTien
         +decimal phiShip
+        +decimal giamGia
         +datetime ngayTao
+        +int soLuong
+        +decimal donGia
         +calculateTotal() decimal
         +updateStatus(trangThai) void
         +cancel() void
@@ -152,7 +156,6 @@ classDiagram
     Order "1" --> "1" Payment : thanh toán
     Order "1" --> "0..1" Shipment : giao hàng
     Coupon "0..1" --> "0..*" Order : áp dụng cho
-```
 ```
 ## Danh sách lớp và ánh xạ sang bảng
 
