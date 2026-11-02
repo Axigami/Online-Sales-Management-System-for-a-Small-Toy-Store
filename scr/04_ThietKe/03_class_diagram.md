@@ -2,7 +2,7 @@
 
 > **Phụ trách:** Trần Vinh Quang  
 > **Trạng thái:** 🟠 Chờ duyệt
-> **Hạn:** —
+> **Hạn:** 
 
 <!-- huong-dan:start -->
 > 💡 Vẽ **Class Diagram rút gọn 8 lớp lõi**: User, Product, Category, Cart–CartItem, Order–OrderItem, Payment, Shipment, Coupon. Mỗi lớp có thuộc tính + 2–3 phương thức và multiplicity. Phương thức đã chốt trong kế hoạch: `Cart.addItem()`, `Order.calculateTotal()`, `Order.updateStatus()`, `Shipment.track()`.
