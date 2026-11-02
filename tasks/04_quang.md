@@ -7,7 +7,7 @@
 ## Các bước làm
 
 - [ ] Lấy **bảng 14 thực thể** (trong `04_erd.md`) làm gốc; bổ sung kiểu dữ liệu, khóa chính (PK), khóa ngoại (FK), ràng buộc
-- [ ] Vẽ **Class Diagram rút gọn 8 lớp lõi:** User (kế thừa Customer/Staff/Admin hoặc dùng thuộc tính vai_trò), Product, Category, Cart–CartItem, Order–OrderItem, Payment, Shipment, Coupon. Mỗi lớp có thuộc tính + 2–3 phương thức (vd Cart.addItem(), Order.calculateTotal(), Order.updateStatus(), Shipment.track()) và multiplicity
+- [x] Vẽ **Class Diagram rút gọn 8 lớp lõi:** User (kế thừa Customer/Staff/Admin hoặc dùng thuộc tính vai_trò), Product, Category, Cart–CartItem, Order–OrderItem, Payment, Shipment, Coupon. Mỗi lớp có thuộc tính + 2–3 phương thức (vd Cart.addItem(), Order.calculateTotal(), Order.updateStatus(), Shipment.track()) và multiplicity
 - [ ] Vẽ **ERD đầy đủ 14 bảng**, ghi rõ khóa và cardinality
 - [ ] Viết **từ điển dữ liệu** cho 6 bảng chính: PRODUCT, CART_ITEM, ORDERS, ORDER_ITEM, PAYMENT, SHIPMENT (tên cột – kiểu – ràng buộc – mô tả)
 - [ ] Ghi ràng buộc: tồn kho ≥ 0; đơn giá lưu ở ORDER_ITEM; trạng thái dùng danh sách giá trị cố định; email duy nhất
