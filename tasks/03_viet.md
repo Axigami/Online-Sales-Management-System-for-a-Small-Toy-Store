@@ -9,14 +9,14 @@
 - [x] Nhận danh sách UC và FR từ Nguyên
 - [x] Đặc tả **8 UC: UC02, UC10, UC11, UC13, UC14, UC17, UC21, UC22** – mỗi UC 1 file trong `docs/03_UseCase/specs/` (Đã hoàn thành 8/8 UC: UC02, UC10, UC11, UC13, UC14, UC17, UC21, UC22)
 - [x] Mỗi UC nêu ít nhất 2 luồng thay thế/ngoại lệ
-- [ ] Vẽ **4 Sequence Diagram** SD1–SD4 → `docs/04_ThietKe/02_sequence/`; tên thông điệp khớp tên phương thức trong Class Diagram của Quang (Đã hoàn thành: SD1)
-- [ ] Đối chiếu luồng với Activity Diagram của Nguyên; sai khác thì báo Nguyên sửa
-- [ ] Viết 3–5 dòng giải thích dưới mỗi sơ đồ
+- [ ] Vẽ **4 Sequence Diagram** SD1–SD4 → `docs/04_ThietKe/02_sequence/`; tên thông điệp khớp tên phương thức trong Class Diagram của Quang (Đã hoàn thành: SD1, SD2, SD3)
+- [x] Đối chiếu luồng với Activity Diagram của Nguyên; sai khác thì báo Nguyên sửa
+- [x] Viết 3–5 dòng giải thích dưới mỗi sơ đồ
 
 ## Output cuối cùng
 
 - [x] 8 bảng đặc tả Use Case (UC02, 10, 11, 13, 14, 17, 21, 22)
-- [ ] 4 Sequence Diagram (SD1–SD4) + 3–5 dòng giải thích mỗi sơ đồ
+- [ ] 4 Sequence Diagram (SD1–SD4) + 3–5 dòng giải thích mỗi sơ đồ (Đã hoàn thành 3/4: SD1, SD2, SD3)
 
 ## Phần của mình nối với ai (trả lời câu 3 khi báo cáo)
 
