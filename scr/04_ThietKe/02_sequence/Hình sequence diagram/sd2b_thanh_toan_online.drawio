@@ -194,12 +194,6 @@
         <mxCell id="alt_guard1" value="[Giao dich thanh cong (status=SUCCESS)]" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontStyle=1;fontSize=11.5;fontColor=#274e13;" vertex="1" parent="1">
           <mxGeometry x="70" y="692" width="450" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="acid_box" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff8f8;strokeColor=#cc0000;strokeWidth=2;dashed=1;dashPattern=4 3;opacity=85;" vertex="1" parent="1">
-          <mxGeometry x="400" y="725" width="890" height="655" as="geometry" />
-        </mxCell>
-        <mxCell id="acid_lbl" value="&amp;lt;b style=&amp;quot;color:#cc0000;&amp;quot;&amp;gt;ACID Transaction Scope: Tạo đơn Online &amp;amp; Cập nhật kho (BR2, BR3, BR6)&amp;lt;/b&amp;gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;" vertex="1" parent="1">
-          <mxGeometry x="415" y="728" width="480" height="20" as="geometry" />
-        </mxCell>
         <mxCell id="msg_12" value="12: beginTransaction()" style="html=1;verticalAlign=bottom;endArrow=block;endFill=1;strokeColor=#CC0000;strokeWidth=2;fontColor=#CC0000;fontStyle=1;fontSize=11;" edge="1" parent="1">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="467" y="755" as="sourcePoint" />

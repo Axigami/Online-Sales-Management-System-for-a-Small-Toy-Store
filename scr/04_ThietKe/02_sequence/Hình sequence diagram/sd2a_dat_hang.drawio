@@ -314,12 +314,6 @@
             <mxPoint x="543" y="1765" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="acid_box" value="" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff8f8;strokeColor=#cc0000;strokeWidth=2;dashed=1;dashPattern=4 3;opacity=85;" vertex="1" parent="1">
-          <mxGeometry x="500" y="1800" width="690" height="660" as="geometry" />
-        </mxCell>
-        <mxCell id="acid_lbl" value="&amp;lt;b style=&amp;quot;color:#cc0000;&amp;quot;&amp;gt;ACID Transaction Scope: Tạo đơn COD/CK &amp;amp; Cập nhật kho (BR2, BR3)&amp;lt;/b&amp;gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;" vertex="1" parent="1">
-          <mxGeometry x="515" y="1803" width="450" height="20" as="geometry" />
-        </mxCell>
         <mxCell id="msg_29" value="29: beginTransaction()" style="html=1;verticalAlign=bottom;endArrow=block;endFill=1;strokeColor=#CC0000;strokeWidth=2;fontColor=#CC0000;fontStyle=1;fontSize=11;" edge="1" parent="1">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="557" y="1835" as="sourcePoint" />
