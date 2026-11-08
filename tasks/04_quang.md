@@ -6,19 +6,19 @@
 
 ## Các bước làm
 
-- [ ] Lấy **bảng 14 thực thể** (trong `04_erd.md`) làm gốc; bổ sung kiểu dữ liệu, khóa chính (PK), khóa ngoại (FK), ràng buộc
+- [x] Lấy **bảng 14 thực thể** (trong `04_erd.md`) làm gốc; bổ sung kiểu dữ liệu, khóa chính (PK), khóa ngoại (FK), ràng buộc
 - [x] Vẽ **Class Diagram rút gọn 8 lớp lõi:** User (kế thừa Customer/Staff/Admin hoặc dùng thuộc tính vai_trò), Product, Category, Cart–CartItem, Order–OrderItem, Payment, Shipment, Coupon. Mỗi lớp có thuộc tính + 2–3 phương thức (vd Cart.addItem(), Order.calculateTotal(), Order.updateStatus(), Shipment.track()) và multiplicity
-- [ ] Vẽ **ERD đầy đủ 14 bảng**, ghi rõ khóa và cardinality
-- [ ] Viết **từ điển dữ liệu** cho 6 bảng chính: PRODUCT, CART_ITEM, ORDERS, ORDER_ITEM, PAYMENT, SHIPMENT (tên cột – kiểu – ràng buộc – mô tả)
-- [ ] Ghi ràng buộc: tồn kho ≥ 0; đơn giá lưu ở ORDER_ITEM; trạng thái dùng danh sách giá trị cố định; email duy nhất
-- [ ] Thống nhất tên lớp/phương thức với Việt; gửi ERD cho Phương và Tâm khi cần trường dữ liệu cho màn hình
-- [ ] (Tùy chọn) Xuất script SQL tạo bảng → `docs/04_ThietKe/sql/` (tạo thêm thư mục và báo nhóm trưởng để thêm vào phạm vi)
+- [x] Vẽ **ERD đầy đủ 14 bảng**, ghi rõ khóa và cardinality
+- [x] Viết **từ điển dữ liệu** cho 6 bảng chính: PRODUCT, CART_ITEM, ORDERS, ORDER_ITEM, PAYMENT, SHIPMENT (tên cột – kiểu – ràng buộc – mô tả)
+- [x] Ghi ràng buộc: tồn kho ≥ 0; đơn giá lưu ở ORDER_ITEM; trạng thái dùng danh sách giá trị cố định; email duy nhất
+- [x] Thống nhất tên lớp/phương thức với Việt; gửi ERD cho Phương và Tâm khi cần trường dữ liệu cho màn hình
+- [x] (Tùy chọn) Xuất script SQL tạo bảng → `docs/04_ThietKe/sql/` (tạo thêm thư mục và báo nhóm trưởng để thêm vào phạm vi)
 
 ## Output cuối cùng
 
-- [ ] Class Diagram (8 lớp) có thuộc tính, phương thức, multiplicity
-- [ ] ERD đầy đủ 14 bảng (PK, FK, cardinality)
-- [ ] Từ điển dữ liệu 6 bảng chính + danh sách ràng buộc
+- [x] Class Diagram (8 lớp) có thuộc tính, phương thức, multiplicity
+- [x] ERD đầy đủ 14 bảng (PK, FK, cardinality)
+- [x] Từ điển dữ liệu 6 bảng chính + danh sách ràng buộc
 
 ## Phần của mình nối với ai (trả lời câu 3 khi báo cáo)
 
