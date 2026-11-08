@@ -1,7 +1,7 @@
 # Từ điển dữ liệu (6 bảng chính) và ràng buộc
 
 > **Phụ trách:** Trần Vinh Quang  
-> **Trạng thái:** 🔴 Chưa làm  
+> **Trạng thái:** 🟠 Chờ duyệt
 > **Hạn:** —
 
 <!-- huong-dan:start -->
