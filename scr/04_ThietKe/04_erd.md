@@ -1,7 +1,7 @@
 # ERD (14 bảng)
 
 > **Phụ trách:** Trần Vinh Quang  
-> **Trạng thái:** 🔴 Chưa làm  
+> **Trạng thái:** 🟠 Chờ duyệt
 > **Hạn:** —
 
 <!-- huong-dan:start -->
