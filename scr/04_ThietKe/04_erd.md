@@ -267,20 +267,20 @@ erDiagram
 ```
 | Bảng | Thuộc tính chính | Quan hệ |
 | --- | --- | --- |
-| USER | id, họ_tên, email, SĐT, mật_khẩu_hash, vai_trò, trạng_thái | 1–N ADDRESS, ORDERS; 1–1 CART |
-| ADDRESS | id, user_id, người_nhận, SĐT, địa_chỉ, tỉnh/huyện/xã, mặc_định | N–1 USER |
-| CATEGORY | id, tên, mô_tả | 1–N PRODUCT |
-| PRODUCT | id, category_id, tên, mô_tả, giá, tồn_kho, độ_tuổi, khối_lượng, trạng_thái | N–1 CATEGORY; 1–N PRODUCT_IMAGE, CART_ITEM, ORDER_ITEM, INVENTORY_LOG |
+| USER | id, ho_ten, email, sdt, mat_khau_hash, vai_tro, trang_thai, ngay_tao | 1–N ADDRESS, ORDERS; 1–1 CART |
+| ADDRESS | id, user_id, nguoi_nhan, sdt, dia_chi, tinh_huyen_xa, mac_dinh | N–1 USER; 1–N ORDERS |
+| CATEGORY | id, ten, mo_ta | 1–N PRODUCT |
+| PRODUCT | id, category_id, ten, mo_ta, gia, ton_kho, do_tuoi, khoi_luong, trang_thai | N–1 CATEGORY; 1–N PRODUCT_IMAGE, CART_ITEM, ORDER_ITEM, INVENTORY_LOG |
 | PRODUCT_IMAGE | id, product_id, url | N–1 PRODUCT |
 | CART | id, user_id | 1–1 USER; 1–N CART_ITEM |
-| CART_ITEM | id, cart_id, product_id, số_lượng | N–1 CART, PRODUCT |
-| ORDERS | id, user_id, address_id, coupon_id, tổng_tiền, phí_ship, giảm_giá, trạng_thái, ngày_tạo | N–1 USER, ADDRESS, COUPON; 1–N ORDER_ITEM; 1–1 PAYMENT, SHIPMENT |
-| ORDER_ITEM | id, order_id, product_id, số_lượng, đơn_giá | N–1 ORDERS, PRODUCT |
-| PAYMENT | id, order_id, phương_thức, số_tiền, trạng_thái, mã_giao_dịch, thời_gian | 1–1 ORDERS |
-| SHIPMENT | id, order_id, carrier_id, mã_vận_đơn, phí, trạng_thái, ngày_giao | 1–1 ORDERS; N–1 CARRIER |
-| CARRIER | id, tên, phí_cơ_bản, phí_theo_kg | 1–N SHIPMENT |
-| COUPON | id, mã, loại_giảm, giá_trị, đơn_tối_thiểu, hạn_dùng, số_lượt | 1–N ORDERS |
-| INVENTORY_LOG | id, product_id, thay_đổi, lý_do, thời_gian | N–1 PRODUCT |
+| CART_ITEM | id, cart_id, product_id, so_luong | N–1 CART, PRODUCT |
+| ORDERS | id, user_id, address_id, coupon_id, tong_tien, phi_ship, giam_gia, trang_thai, ngay_tao | N–1 USER, ADDRESS; N–0..1 COUPON (không bắt buộc dùng mã); 1–N ORDER_ITEM; 1–1 PAYMENT; 1–0..1 SHIPMENT (chỉ có sau khi xác nhận đơn) |
+| ORDER_ITEM | id, order_id, product_id, so_luong, don_gia | N–1 ORDERS, PRODUCT |
+| PAYMENT | id, order_id, phuong_thuc, so_tien, trang_thai, ma_giao_dich, thoi_gian | 1–1 ORDERS |
+| SHIPMENT | id, order_id, carrier_id, ma_van_don, phi, trang_thai, ngay_giao | 0..1–1 ORDERS (mỗi vận đơn thuộc đúng 1 đơn); N–1 CARRIER |
+| CARRIER | id, ten, phi_co_ban, phi_theo_kg | 1–N SHIPMENT |
+| COUPON | id, ma, loai_giam, gia_tri, don_toi_thieu, han_dung, so_luot | 1–N ORDERS (0..1 mã mỗi đơn) |
+| INVENTORY_LOG | id, product_id, thay_doi, ly_do, thoi_gian | N–1 PRODUCT |
 
 ## 3 quyết định thiết kế
 
