@@ -138,10 +138,133 @@ erDiagram
 
 ## Sơ đồ ERD
 
-TODO (chèn hình)
+```mermaid
+erDiagram
+    USER ||--o{ ADDRESS : "có"
+    USER ||--o{ ORDERS : "đặt"
+    USER ||--|| CART : "sở hữu"
+    CATEGORY ||--o{ PRODUCT : "chứa"
+    PRODUCT ||--o{ PRODUCT_IMAGE : "có ảnh"
+    PRODUCT ||--o{ CART_ITEM : "nằm trong"
+    PRODUCT ||--o{ ORDER_ITEM : "được mua"
+    PRODUCT ||--o{ INVENTORY_LOG : "ghi log"
+    CART ||--o{ CART_ITEM : "gồm"
+    ADDRESS ||--o{ ORDERS : "giao tới"
+    COUPON |o--o{ ORDERS : "áp dụng"
+    ORDERS ||--o{ ORDER_ITEM : "gồm"
+    ORDERS ||--|| PAYMENT : "thanh toán"
+    ORDERS ||--o| SHIPMENT : "vận chuyển"
+    CARRIER ||--o{ SHIPMENT : "nhận"
 
-## 14 thực thể
-
+    USER {
+        int id PK "AUTO_INCREMENT"
+        varchar(100) ho_ten "NOT NULL"
+        varchar(150) email UK "NOT NULL"
+        varchar(15) sdt "NULL được"
+        varchar(255) mat_khau_hash "NOT NULL, lưu băm"
+        varchar(20) vai_tro "CUSTOMER/STAFF/ADMIN, mặc định CUSTOMER"
+        varchar(20) trang_thai "ACTIVE/LOCKED, mặc định ACTIVE"
+        datetime ngay_tao "DEFAULT hiện tại"
+    }
+    ADDRESS {
+        int id PK "AUTO_INCREMENT"
+        int user_id FK "NOT NULL, ON DELETE CASCADE"
+        varchar(100) nguoi_nhan "NOT NULL"
+        varchar(15) sdt "NOT NULL"
+        varchar(255) dia_chi "NOT NULL, số nhà và đường"
+        varchar(150) tinh_huyen_xa "NOT NULL"
+        boolean mac_dinh "DEFAULT false, tối đa 1 địa chỉ mặc định/user"
+    }
+    CATEGORY {
+        int id PK "AUTO_INCREMENT"
+        varchar(100) ten UK "NOT NULL"
+        text mo_ta "NULL được"
+    }
+    PRODUCT {
+        int id PK "AUTO_INCREMENT"
+        int category_id FK "NOT NULL"
+        varchar(200) ten "NOT NULL"
+        text mo_ta "NULL được"
+        decimal gia "DECIMAL(12,2), NOT NULL, >= 0"
+        int ton_kho "NOT NULL, >= 0, DEFAULT 0"
+        varchar(20) do_tuoi "vd 3+, 6+"
+        decimal khoi_luong "DECIMAL(8,2) kg, > 0, tính phí ship"
+        varchar(20) trang_thai "ACTIVE/HIDDEN/OUT_OF_STOCK"
+    }
+    PRODUCT_IMAGE {
+        int id PK "AUTO_INCREMENT"
+        int product_id FK "NOT NULL, ON DELETE CASCADE"
+        varchar(500) url "NOT NULL"
+    }
+    CART {
+        int id PK "AUTO_INCREMENT"
+        int user_id FK, UK "NOT NULL, 1 user = 1 giỏ"
+    }
+    CART_ITEM {
+        int id PK "AUTO_INCREMENT"
+        int cart_id FK "NOT NULL, ON DELETE CASCADE"
+        int product_id FK "NOT NULL, UNIQUE cùng cart_id"
+        int so_luong "NOT NULL, > 0"
+    }
+    ORDERS {
+        int id PK "AUTO_INCREMENT"
+        int user_id FK "NOT NULL (BR1 phải đăng nhập)"
+        int address_id FK "NOT NULL"
+        int coupon_id FK "NULL được, tối đa 1 mã (BR5)"
+        decimal tong_tien "DECIMAL(12,2), >= 0"
+        decimal phi_ship "DECIMAL(12,2), 0 nếu từ 500.000đ (BR4)"
+        decimal giam_gia "DECIMAL(12,2), DEFAULT 0"
+        varchar(20) trang_thai "PENDING/CONFIRMED/PACKING/SHIPPING/DELIVERED/CANCELLED/FAILED"
+        datetime ngay_tao "DEFAULT hiện tại"
+    }
+    ORDER_ITEM {
+        int id PK "AUTO_INCREMENT"
+        int order_id FK "NOT NULL, ON DELETE CASCADE"
+        int product_id FK "NOT NULL"
+        int so_luong "NOT NULL, > 0"
+        decimal don_gia "DECIMAL(12,2), giá tại lúc mua (BR3)"
+    }
+    PAYMENT {
+        int id PK "AUTO_INCREMENT"
+        int order_id FK, UK "NOT NULL, 1 đơn = 1 thanh toán"
+        varchar(20) phuong_thuc "COD/BANK_TRANSFER/GATEWAY (BR6)"
+        decimal so_tien "DECIMAL(12,2), >= 0"
+        varchar(20) trang_thai "UNPAID/PAID/REFUNDED/FAILED"
+        varchar(100) ma_giao_dich "NULL với COD"
+        datetime thoi_gian "NULL đến khi thanh toán"
+    }
+    SHIPMENT {
+        int id PK "AUTO_INCREMENT"
+        int order_id FK, UK "NOT NULL, 0..1 vận đơn / đơn"
+        int carrier_id FK "NOT NULL"
+        varchar(50) ma_van_don UK "NOT NULL"
+        decimal phi "DECIMAL(12,2), >= 0"
+        varchar(20) trang_thai "CREATED/PICKED_UP/IN_TRANSIT/DELIVERED/FAILED/RETURNED"
+        date ngay_giao "NULL đến khi giao xong"
+    }
+    CARRIER {
+        int id PK "AUTO_INCREMENT"
+        varchar(100) ten UK "NOT NULL"
+        decimal phi_co_ban "DECIMAL(12,2), >= 0"
+        decimal phi_theo_kg "DECIMAL(12,2), >= 0"
+    }
+    COUPON {
+        int id PK "AUTO_INCREMENT"
+        varchar(30) ma UK "NOT NULL, viết hoa"
+        varchar(10) loai_giam "PERCENT/AMOUNT"
+        decimal gia_tri "DECIMAL(12,2), > 0"
+        decimal don_toi_thieu "DECIMAL(12,2), DEFAULT 0"
+        date han_dung "NOT NULL"
+        int so_luot "NOT NULL, >= 0, giảm dần khi dùng"
+    }
+    INVENTORY_LOG {
+        int id PK "AUTO_INCREMENT"
+        int product_id FK "NOT NULL"
+        int thay_doi "NOT NULL, âm = xuất, dương = nhập"
+        varchar(200) ly_do "vd ORDER_PLACED, ORDER_CANCELLED, RESTOCK"
+        datetime thoi_gian "DEFAULT hiện tại"
+    }
+```
 | Bảng | Thuộc tính chính | Quan hệ |
 | --- | --- | --- |
 | USER | id, họ_tên, email, SĐT, mật_khẩu_hash, vai_trò, trạng_thái | 1–N ADDRESS, ORDERS; 1–1 CART |
