@@ -284,10 +284,19 @@ erDiagram
 
 ## 3 quyết định thiết kế
 
-1. Tách ORDER_ITEM khỏi ORDERS: TODO
-2. Lưu đơn giá tại thời điểm mua (ORDER_ITEM.don_gia): TODO
-3. Tách PAYMENT và SHIPMENT khỏi ORDERS: TODO
+1. Tách ORDER_ITEM khỏi ORDERS: một đơn có nhiều sản phẩm, nếu gộp vào ORDERS sẽ phải lặp cột hoặc nhét nhiều giá trị vào một ô, vi phạm chuẩn hóa. Tách ra thì mỗi dòng ORDER_ITEM là một sản phẩm trong đơn (quan hệ 1–N), số sản phẩm tùy ý và dễ thống kê.
+
+2. Lưu đơn giá tại thời điểm mua (ORDER_ITEM.don_gia): giá trong PRODUCT có thể đổi, nếu lấy giá từ PRODUCT thì đơn cũ sẽ đổi theo và sai doanh thu. Vì vậy khi đặt hàng, hệ thống sao chép giá hiện tại vào don_gia và giữ cố định (BR3).
+
+3. Tách PAYMENT và SHIPMENT khỏi ORDERS: thanh toán và vận chuyển là hai nghiệp vụ riêng, có thuộc tính và trạng thái riêng. Gộp vào ORDERS sẽ nhiều cột để trống (đơn COD không có mã giao dịch, đơn chưa xác nhận chưa có vận đơn). Tách ra thể hiện đúng quan hệ ORDERS–PAYMENT 1–1 và ORDERS–SHIPMENT 1–0..1.
 
 ## Luồng Giỏ hàng → Đơn hàng → Vận chuyển trên ERD
 
-TODO
+1. Giỏ hàng: USER có 1 CART (1–1), mỗi sản phẩm thêm vào là một CART_ITEM (kiểm tra PRODUCT.ton_kho).
+2. Đặt hàng: chọn ADDRESS, có thể dùng COUPON. Tạo ORDERS (PENDING), sao chép từng CART_ITEM thành ORDER_ITEM với don_gia = giá hiện tại, tính tong_tien = tổng(so_luong × don_gia) + phi_ship − giam_gia. Trừ ton_kho, ghi INVENTORY_LOG (số âm), giảm COUPON.so_luot, xóa CART_ITEM đã đặt.
+3. Thanh toán: tạo PAYMENT (1–1 với đơn). Chuyển khoản hoặc cổng mô phỏng thì PAID khi thành công, COD thì UNPAID đến khi giao xong.
+4. Xác nhận và đóng gói: ORDERS chuyển CONFIRMED rồi PACKING. Hủy được khi chưa đóng gói (CANCELLED), lúc đó cộng lại ton_kho và ghi INVENTORY_LOG (số dương).
+5. Vận chuyển: tạo SHIPMENT (carrier_id, ma_van_don, phi tính từ CARRIER), ORDERS chuyển SHIPPING.
+6. Kết thúc: giao thành công thì SHIPMENT và ORDERS thành DELIVERED, PAYMENT thành PAID (đơn COD). Giao thất bại thì SHIPMENT thành FAILED, hoàn hàng về kho (cộng ton_kho, ghi INVENTORY_LOG).
+
+Chuỗi bảng: USER → CART → CART_ITEM → ORDERS → ORDER_ITEM → PAYMENT → SHIPMENT → CARRIER.
