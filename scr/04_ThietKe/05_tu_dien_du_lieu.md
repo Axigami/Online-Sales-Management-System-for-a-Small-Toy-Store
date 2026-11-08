@@ -85,4 +85,14 @@
 - Đơn giá lưu ở ORDER_ITEM (giá tại thời điểm mua, BR3).
 - Các cột trạng thái dùng danh sách giá trị cố định (trạng thái đơn, thanh toán, vận đơn).
 - Email người dùng là duy nhất (USER.email).
-- TODO: bổ sung các ràng buộc khác (quan hệ 1–1, hạn dùng mã giảm giá, số lượt dùng…)
+- Quan hệ 1–1: mỗi USER có đúng 1 CART (CART.user_id UNIQUE); mỗi ORDERS có đúng 1 PAYMENT (PAYMENT.order_id UNIQUE); mỗi ORDERS có tối đa 1 SHIPMENT (SHIPMENT.order_id UNIQUE, vận đơn chỉ tạo sau khi xác nhận đơn).
+- Một sản phẩm không xuất hiện hai lần trong cùng một giỏ: UNIQUE (CART_ITEM.cart_id, CART_ITEM.product_id).
+- Số lượng phải dương: CART_ITEM.so_luong > 0, ORDER_ITEM.so_luong > 0; khối lượng sản phẩm > 0.
+- Các cột tiền không âm: PRODUCT.gia, ORDERS.tong_tien, ORDERS.phi_ship, ORDERS.giam_gia, ORDER_ITEM.don_gia, PAYMENT.so_tien, SHIPMENT.phi (≥ 0).
+- Mã giảm giá: COUPON.ma là duy nhất; chỉ áp dụng khi còn hạn (han_dung ≥ ngày đặt), còn lượt (so_luot > 0) và đơn đạt don_toi_thieu; mỗi lần dùng giảm so_luot đi 1; mỗi đơn dùng tối đa 1 mã (ORDERS.coupon_id, BR5).
+- Mã vận đơn là duy nhất (SHIPMENT.ma_van_don); tên danh mục và tên đơn vị vận chuyển không trùng (CATEGORY.ten, CARRIER.ten).
+- Mỗi người dùng có tối đa 1 địa chỉ mặc định (ADDRESS.mac_dinh).
+- Đặt hàng bắt buộc đăng nhập: ORDERS.user_id NOT NULL (BR1).
+- Chỉ được hủy đơn khi chưa đóng gói; hủy đơn hoặc giao thất bại thì hoàn lại tồn kho và ghi INVENTORY_LOG.
+- Toàn vẹn tham chiếu: mọi khóa ngoại phải trỏ tới bản ghi tồn tại; xóa bản ghi cha thì xóa luôn chi tiết (ON DELETE CASCADE cho ADDRESS, PRODUCT_IMAGE, CART_ITEM, ORDER_ITEM).
+- Miễn phí vận chuyển khi tiền hàng từ 500.000đ trở lên (BR4, số giả định).
