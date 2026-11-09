@@ -220,7 +220,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="diag_ad2" name="AD2 - Xử lý đơn &amp; Vận chuyển">
-    <mxGraphModel dx="2425" dy="1269" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1350" pageHeight="1280" math="0" shadow="0">
+    <mxGraphModel dx="1828" dy="957" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1350" pageHeight="1280" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -232,6 +232,24 @@
         </mxCell>
         <mxCell id="lane_sys" parent="1" style="swimlane;startSize=40;horizontal=1;swimlaneFillColor=#ffffff;fillColor=#f5f5f5;strokeColor=#90a4ae;strokeWidth=1.5;fontStyle=1;fontSize=13;fontFamily=Segoe UI;fontColor=#263238;" value="Hệ thống (System)" vertex="1">
           <mxGeometry height="1180" width="310" x="340" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="SYS6" parent="lane_sys" style="rounded=1;whiteSpace=wrap;html=1;arcSize=18;fillColor=#e3f2fd;strokeColor=#1976d2;strokeWidth=1.5;fontColor=#0d47a1;fontSize=12;fontFamily=Segoe UI;fontStyle=0;shadow=1;" value="Tiếp nhận Webhook thành công&lt;br&gt;Cập nhật: &quot;Đã giao&quot; + &quot;Đã TT&quot;" vertex="1">
+          <mxGeometry height="50" width="200" x="55" y="780" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl_EndDel" parent="lane_sys" style="text;html=1;align=center;verticalAlign=top;fontSize=11;fontColor=#2e7d32;fontStyle=1;" value="Kết thúc: Giao thành công" vertex="1">
+          <mxGeometry height="20" width="160" x="75" y="895" as="geometry" />
+        </mxCell>
+        <mxCell id="End_Delivered" parent="lane_sys" style="ellipse;shape=endState;fillColor=#c62828;strokeColor=#b71c1c;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="30" width="30" x="135" y="865" as="geometry" />
+        </mxCell>
+        <mxCell id="Y-W7cQvmcCvdhrK4skHP-5" edge="1" parent="lane_sys" source="SYS6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;strokeColor=#37474f;strokeWidth=1.5;fontSize=11;fontFamily=Segoe UI;labelBackgroundColor=#ffffff;fontColor=#263238;endSize=6;" target="End_Delivered" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="155" y="830" as="sourcePoint" />
+            <mxPoint x="150" y="883" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="SYS7" parent="lane_sys" style="rounded=1;whiteSpace=wrap;html=1;arcSize=18;fillColor=#e3f2fd;strokeColor=#1976d2;strokeWidth=1.5;fontColor=#0d47a1;fontSize=12;fontFamily=Segoe UI;fontStyle=0;shadow=1;" value="Tiếp nhận Webhook thất bại&lt;br&gt;Cập nhật: &quot;Giao thất bại&quot;" vertex="1">
+          <mxGeometry height="45" width="200" x="60" y="940" as="geometry" />
         </mxCell>
         <mxCell id="lane_car" parent="1" style="swimlane;startSize=40;horizontal=1;swimlaneFillColor=#ffffff;fillColor=#f5f5f5;strokeColor=#90a4ae;strokeWidth=1.5;fontStyle=1;fontSize=13;fontFamily=Segoe UI;fontColor=#263238;" value="Đơn vị vận chuyển (Carrier)" vertex="1">
           <mxGeometry height="1180" width="310" x="650" y="70" as="geometry" />
@@ -286,18 +304,6 @@
         </mxCell>
         <mxCell id="SYS5" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=18;fillColor=#e3f2fd;strokeColor=#1976d2;strokeWidth=1.5;fontColor=#0d47a1;fontSize=12;fontFamily=Segoe UI;fontStyle=0;shadow=1;" value="Cập nhật đơn: &quot;Đang giao&quot;&lt;br&gt;&amp;amp; gửi mã tracking cho Khách" vertex="1">
           <mxGeometry height="45" width="200" x="395" y="765" as="geometry" />
-        </mxCell>
-        <mxCell id="SYS6" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=18;fillColor=#e3f2fd;strokeColor=#1976d2;strokeWidth=1.5;fontColor=#0d47a1;fontSize=12;fontFamily=Segoe UI;fontStyle=0;shadow=1;" value="Tiếp nhận Webhook thành công&lt;br&gt;Cập nhật: &quot;Đã giao&quot; + &quot;Đã TT&quot;" vertex="1">
-          <mxGeometry height="50" width="200" x="395" y="950" as="geometry" />
-        </mxCell>
-        <mxCell id="End_Delivered" parent="1" style="ellipse;shape=endState;fillColor=#c62828;strokeColor=#b71c1c;strokeWidth=2;" value="" vertex="1">
-          <mxGeometry height="30" width="30" x="480" y="1025" as="geometry" />
-        </mxCell>
-        <mxCell id="lbl_EndDel" parent="1" style="text;html=1;align=center;verticalAlign=top;fontSize=11;fontColor=#2e7d32;fontStyle=1;" value="Kết thúc: Giao thành công" vertex="1">
-          <mxGeometry height="20" width="160" x="415" y="1055" as="geometry" />
-        </mxCell>
-        <mxCell id="SYS7" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=18;fillColor=#e3f2fd;strokeColor=#1976d2;strokeWidth=1.5;fontColor=#0d47a1;fontSize=12;fontFamily=Segoe UI;fontStyle=0;shadow=1;" value="Tiếp nhận Webhook thất bại&lt;br&gt;Cập nhật: &quot;Giao thất bại&quot;" vertex="1">
-          <mxGeometry height="45" width="200" x="395" y="1015" as="geometry" />
         </mxCell>
         <mxCell id="SYS8" parent="1" style="rounded=1;whiteSpace=wrap;html=1;arcSize=18;fillColor=#e3f2fd;strokeColor=#1976d2;strokeWidth=1.5;fontColor=#0d47a1;fontSize=12;fontFamily=Segoe UI;fontStyle=0;shadow=1;" value="Cập nhật đơn: &quot;Hoàn về kho&quot;&lt;br&gt;&amp;amp; tự động cộng hoàn tồn kho" vertex="1">
           <mxGeometry height="45" width="200" x="395" y="1080" as="geometry" />
@@ -419,23 +425,29 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="t_cust2_c5" edge="1" parent="1" source="CUST2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;strokeColor=#37474f;strokeWidth=1.5;fontSize=11;fontFamily=Segoe UI;labelBackgroundColor=#ffffff;fontColor=#263238;endSize=6;" target="C5">
-          <mxGeometry relative="1" as="geometry" />
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1000" y="972.5" />
+              <mxPoint x="1000" y="972.5" />
+            </Array>
+          </mxGeometry>
         </mxCell>
         <mxCell id="t_c5_sys6" edge="1" parent="1" source="C5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;strokeColor=#37474f;strokeWidth=1.5;fontSize=11;fontFamily=Segoe UI;labelBackgroundColor=#ffffff;fontColor=#263238;endSize=6;" target="SYS6">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="t_sys6_endd" edge="1" parent="1" source="SYS6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;strokeColor=#37474f;strokeWidth=1.5;fontSize=11;fontFamily=Segoe UI;labelBackgroundColor=#ffffff;fontColor=#263238;endSize=6;" target="End_Delivered">
-          <mxGeometry relative="1" as="geometry" />
+          <mxGeometry relative="1" x="0.2632" as="geometry">
+            <Array as="points">
+              <mxPoint x="640" y="980" />
+              <mxPoint x="640" y="875" />
+            </Array>
+          </mxGeometry>
         </mxCell>
         <mxCell id="t_c4_cust3" edge="1" parent="1" source="C4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;strokeColor=#37474f;strokeWidth=1.5;fontSize=11;fontFamily=Segoe UI;labelBackgroundColor=#ffffff;fontColor=#263238;endSize=6;" target="CUST3" value="[Không nhận / Bom]">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="t_cust3_c6" edge="1" parent="1" source="CUST3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=classic;strokeColor=#37474f;strokeWidth=1.5;fontSize=11;fontFamily=Segoe UI;labelBackgroundColor=#ffffff;fontColor=#263238;endSize=6;" target="C6">
-          <mxGeometry relative="1" as="geometry">
+          <mxGeometry relative="1" x="0.2942" as="geometry">
             <Array as="points">
-              <mxPoint x="1115" y="930" />
-              <mxPoint x="980" y="930" />
-              <mxPoint x="980" y="1037.5" />
+              <mxPoint x="1230" y="857.5" />
+              <mxPoint x="1230" y="1037.5" />
             </Array>
           </mxGeometry>
         </mxCell>
