@@ -1,7 +1,7 @@
 # Truy vết: Màn hình ↔ Use Case ↔ Yêu cầu
 
 > **Phụ trách:** Phan Trí Tâm  
-> **Trạng thái:** 🔴 Chưa làm  
+> **Trạng thái:** Đang làm  
 > **Hạn:** —
 
 <!-- huong-dan:start -->
