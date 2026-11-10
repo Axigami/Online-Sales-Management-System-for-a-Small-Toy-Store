@@ -4,7 +4,7 @@ Dùng để đối soát chéo giữa 5 người. Khi một người đổi mã/
 
 | Chức năng | Use Case | Activity / Sequence | Màn hình | Bảng dữ liệu |
 | --- | --- | --- | --- | --- |
-| Giỏ hàng | UC10, UC11 | SD1 | C3, C4 | CART, CART_ITEM, PRODUCT |
+| Giỏ hàng | UC10, UC11 | AD3, SD1 | C3, C4 | CART, CART_ITEM, PRODUCT |
 | Đặt hàng | UC13, UC12 | AD1, SD2 | C5, C6 | ORDERS, ORDER_ITEM, COUPON, ADDRESS |
 | Thanh toán | UC14 | AD1, SD2 | C5 | PAYMENT |
 | Xử lý đơn | UC17, UC18 | AD2, SD3 | A3, A4 | ORDERS, INVENTORY_LOG |

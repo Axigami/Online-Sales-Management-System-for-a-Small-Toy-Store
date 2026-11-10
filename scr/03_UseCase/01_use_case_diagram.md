@@ -3,6 +3,7 @@
 > **Phụ trách:** Tô Đoàn Khánh Nguyên  
 > **Trạng thái:** 🟠 Chờ duyệt  
 > **Hạn:** 2026-11-05  
+> **File thiết kế Draw.io:** [01_use_case_diagram.drawio](./01_use_case_diagram.drawio) (Tổng hợp 4 phân hệ)  
 
 Tài liệu mô hình hóa chức năng bằng **Sơ đồ ca sử dụng (Use Case Diagram - UCD)** cho **Hệ thống quản lý bán hàng trực tuyến cho cửa hàng đồ chơi nhỏ**. Tài liệu gồm 1 sơ đồ tổng quát toàn hệ thống và 3 sơ đồ module phân hệ chi tiết, bảo đảm tính nhất quán với [Quy ước danh mục 25 Use Case](../00_Quyuoc/03_danh_sach_use_case.md) và [Yêu cầu chức năng FR](../02_YeuCau/01_yeu_cau_chuc_nang.md).
 
@@ -12,60 +13,7 @@ Tài liệu mô hình hóa chức năng bằng **Sơ đồ ca sử dụng (Use C
 
 ### Sơ đồ trực quan
 
-```mermaid
-flowchart LR
-    %% Actors bên ngoài
-    subgraph Actors_Nguoi ["Nhóm Tác Nhân Người"]
-        Guest["Khách vãng lai\n(Guest)"]
-        Customer["Khách hàng\n(Customer)"]
-        Staff["Nhân viên\n(Staff)"]
-        Admin["Chủ shop / Quản trị\n(Admin)"]
-    end
-
-    subgraph Actors_Ngoai ["Hệ Thống Ngoài"]
-        PaymentGateway["Cổng thanh toán\n(Payment Gateway)"]
-        Carrier["Đơn vị vận chuyển\n(Carrier)"]
-    end
-
-    %% Mối quan hệ kế thừa giữa Actor
-    Customer -->|Kế thừa| Guest
-    Admin -->|Kế thừa| Staff
-
-    %% Ranh giới hệ thống
-    subgraph SystemBoundary ["Hệ Thống Quản Lý Bán Hàng Đồ Chơi"]
-        direction TB
-
-        subgraph Mod_TaiKhoan ["Phân hệ Tài khoản"]
-            UC_TK(["Đăng ký, Đăng nhập,\nQuản lý hồ sơ"])
-        end
-
-        subgraph Mod_MuaHang ["Phân hệ Mua hàng"]
-            UC_MH(["Tìm kiếm, Giỏ hàng,\nĐặt hàng, Thanh toán online"])
-        end
-
-        subgraph Mod_XuLyDon ["Phân hệ Xử lý đơn & Vận chuyển"]
-            UC_XLD(["Xác nhận đơn, Đóng gói,\nTạo vận đơn, Cập nhật trạng thái"])
-        end
-
-        subgraph Mod_QuanTri ["Phân hệ Quản trị & Kho"]
-            UC_QT(["CRUD Sản phẩm, Danh mục,\nQuản lý kho, Mã giảm giá, Thống kê"])
-        end
-    end
-
-    %% Kết nối Actor với các phân hệ
-    Guest --- UC_TK
-    Guest --- UC_MH
-    Customer --- UC_MH
-    Customer --- UC_TK
-
-    Staff --- UC_XLD
-    Staff --- Mod_QuanTri
-    Admin --- Mod_QuanTri
-    Admin --- UC_XLD
-
-    PaymentGateway --- UC_MH
-    Carrier --- UC_XLD
-```
+![Sơ đồ Use Case Tổng Quát](./Hình%20use_case/Sơ%20đồ%20Use%20Case%20Tổng%20Quát.png)
 
 ### Giải thích sơ đồ tổng quát (3–5 dòng)
 * **Tổng thể:** Hệ thống phục vụ 6 Actor, gồm 4 tác nhân con người phân cấp rõ ràng (`Customer` kế thừa toàn bộ quyền của `Guest`, `Admin` kế thừa toàn bộ quyền của `Staff`) và 2 hệ thống dịch vụ bên ngoài kết nối qua giao thức tích hợp (Cổng thanh toán và Đơn vị vận chuyển).
@@ -77,56 +25,7 @@ flowchart LR
 
 ### Sơ đồ trực quan
 
-```mermaid
-flowchart LR
-    %% Actors
-    Guest["Khách vãng lai\n(Guest)"]
-    Customer["Khách hàng\n(Customer)"]
-    PaymentGW["Cổng thanh toán\n(Payment Gateway)"]
-    Carrier["Đơn vị vận chuyển\n(Carrier)"]
-
-    Customer -->|Kế thừa| Guest
-
-    subgraph Boundaries_MuaHang ["Phân hệ Mua hàng (Shopping & Checkout)"]
-        direction TB
-        
-        UC05(["UC05: Xem, tìm kiếm, lọc sản phẩm"])
-        UC06(["UC06: Xem chi tiết sản phẩm"])
-        UC10(["UC10: Thêm sản phẩm vào giỏ"])
-        UC11(["UC11: Quản lý giỏ hàng (Xem/Sửa/Xóa)"])
-        
-        UC02(["UC02: Đăng nhập tài khoản"])
-        UC13(["UC13: Đặt hàng (checkout)"])
-        UC12(["UC12: Áp dụng mã giảm giá"])
-        UC14(["UC14: Thanh toán online"])
-        UC20(["UC20: Tính phí vận chuyển"])
-        
-        UC15(["UC15: Xem lịch sử & theo dõi đơn"])
-        UC16(["UC16: Hủy đơn hàng"])
-    end
-
-    %% Tương tác Guest
-    Guest --- UC05
-    Guest --- UC06
-    Guest --- UC10
-    Guest --- UC11
-
-    %% Tương tác Customer
-    Customer --- UC13
-    Customer --- UC15
-    Customer --- UC16
-
-    %% Quan hệ Include / Extend cốt lõi
-    UC13 -.->|&laquo;include&raquo;| UC02
-    UC13 -.->|&laquo;include&raquo;| UC20
-
-    UC12 -.->|&laquo;extend&raquo;| UC13
-    UC14 -.->|&laquo;extend&raquo;| UC13
-
-    %% Tác nhân ngoài
-    UC14 --- PaymentGW
-    UC20 --- Carrier
-```
+![Phân hệ Mua hàng](./Hình%20use_case/Phân%20hệ%20Mua%20hàng.png)
 
 ### Giải thích Module Mua hàng (3–5 dòng)
 * Module bao phủ hành trình của khách từ khi tìm kiếm đồ chơi, chọn giỏ hàng cho đến khi hoàn tất đặt đơn.
@@ -139,42 +38,7 @@ flowchart LR
 
 ### Sơ đồ trực quan
 
-```mermaid
-flowchart LR
-    %% Actors
-    Staff["Nhân viên\n(Staff)"]
-    Admin["Quản trị viên\n(Admin)"]
-    Carrier["Đơn vị vận chuyển\n(Carrier)"]
-    Customer["Khách hàng\n(Customer)"]
-
-    Admin -->|Kế thừa| Staff
-
-    subgraph Boundaries_XuLyDon ["Phân hệ Xử lý đơn & Vận chuyển"]
-        direction TB
-
-        UC17(["UC17: Xem & xác nhận đơn hàng"])
-        UC18(["UC18: Cập nhật trạng thái đơn hàng\n(Đóng gói/Hoàn tất)"])
-        UC19(["UC19: Xử lý đổi trả / hoàn tiền\n(Mở rộng)"])
-        UC20(["UC20: Tính phí vận chuyển"])
-        UC21(["UC21: Tạo vận đơn & bàn giao"])
-        UC22(["UC22: Theo dõi & cập nhật trạng thái giao"])
-    end
-
-    %% Tương tác Staff
-    Staff --- UC17
-    Staff --- UC18
-    Staff --- UC21
-    Staff --- UC22
-
-    %% Admin có thêm quyền đổi trả
-    Admin --- UC19
-
-    %% Tác nhân ngoài và Khách hàng
-    Carrier --- UC20
-    Carrier --- UC21
-    Carrier --- UC22
-    Customer --- UC22
-```
+![Phân hệ Xử lý đơn và vận chuyển](./Hình%20use_case/Phân%20hệ%20Xử%20lý%20đơn%20và%20vận%20chuyển.png)
 
 ### Giải thích Module Xử lý đơn và vận chuyển (3–5 dòng)
 * Module này giải quyết triệt để 2 vấn đề lớn được phát hiện trong khâu khảo sát: thất lạc đơn hàng và không đồng bộ với đơn vị vận chuyển bên ngoài.
@@ -187,36 +51,7 @@ flowchart LR
 
 ### Sơ đồ trực quan
 
-```mermaid
-flowchart LR
-    %% Actors
-    Staff["Nhân viên\n(Staff)"]
-    Admin["Chủ shop / Quản trị\n(Admin)"]
-
-    Admin -->|Kế thừa| Staff
-
-    subgraph Boundaries_QuanTri ["Phân hệ Quản trị & Kho hàng"]
-        direction TB
-
-        UC07(["UC07: Quản lý sản phẩm\n(Thêm/Sửa/Ẩn/Xóa)"])
-        UC08(["UC08: Quản lý danh mục sản phẩm"])
-        UC09(["UC09: Quản lý tồn kho\n(Nhập kho, điều chỉnh, cảnh báo)"])
-        
-        UC23(["UC23: Quản lý mã giảm giá & khuyến mãi"])
-        UC24(["UC24: Thống kê doanh thu & đơn hàng"])
-        UC25(["UC25: Quản lý tài khoản & phân quyền (RBAC)"])
-    end
-
-    %% Tương tác phân quyền
-    Staff --- UC09
-
-    Admin --- UC07
-    Admin --- UC08
-    Admin --- UC09
-    Admin --- UC23
-    Admin --- UC24
-    Admin --- UC25
-```
+![Phân hệ Quản trị & Kho hàng](./Hình%20use_case/Phân%20hệ%20Quản%20trị%20&%20Kho%20hàng.png)
 
 ### Giải thích Module Quản trị (3–5 dòng)
 * Phân hệ này tập trung vào các chức năng vận hành nội bộ của cửa hàng đồ chơi nhằm quản lý chặt chẽ hàng hóa và theo dõi dòng tiền.
