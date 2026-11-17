@@ -16,66 +16,66 @@
 ```mermaid
 sequenceDiagram
     autonumber
-    actor Staff as Nhan vien<br/>(Staff/Admin)
-    participant UI as :OrderUI<br/>(Man hinh A3/A4)
+    actor Staff as Nhân viên<br/>(Staff/Admin)
+    participant UI as :OrderUI<br/>(Màn hình A3/A4)
     participant Ctrl as :OrderController
     participant OrdSvc as :OrderService
     participant DB as :Database
 
     %% BƯỚC 1: Xem danh sách đơn chờ xác nhận (màn hình A3)
-    Staff->>UI: Mo "Quan ly don hang" – tab "Cho xac nhan"
+    Staff->>UI: Mở "Quản lý đơn hàng" – tab "Chờ xác nhận"
     activate UI
-    UI->>Ctrl: getOrderList(trangThai="Cho xac nhan")
+    UI->>Ctrl: getOrderList(trangThai="Chờ xác nhận")
     activate Ctrl
-    Ctrl->>DB: queryOrders(trangThai="Cho xac nhan")
+    Ctrl->>DB: queryOrders(trangThai="Chờ xác nhận")
     activate DB
-    Note over DB: SELECT * FROM ORDERS<br/>WHERE trang_thai = 'Cho xac nhan'<br/>ORDER BY ngay_tao DESC
-    DB-->>Ctrl: orderList[ ] (ma don, ten KH, tong tien, PTTT)
+    Note over DB: SELECT * FROM ORDERS<br/>WHERE trang_thai = 'Chờ xác nhận'<br/>ORDER BY ngay_tao DESC
+    DB-->>Ctrl: orderList[ ] (mã đơn, tên KH, tổng tiền, PTTT)
     deactivate DB
     Ctrl-->>UI: 200 OK (orderList)
-    UI-->>Staff: Hien thi man hinh A3 (danh sach don "Cho xac nhan")
+    UI-->>Staff: Hiển thị màn hình A3 (danh sách đơn "Chờ xác nhận")
 
     %% BƯỚC 2: Xem chi tiết một đơn hàng (màn hình A4)
-    Staff->>UI: Nhan vao don hang de xem chi tiet
+    Staff->>UI: Nhấn vào đơn hàng để xem chi tiết
     UI->>Ctrl: getOrderDetail(orderId)
     Ctrl->>DB: queryOrderDetail(orderId)
     activate DB
     Note over DB: SELECT o.*, oi.*, p.ten, p.gia<br/>FROM ORDERS o JOIN ORDER_ITEM oi<br/>JOIN PRODUCT p WHERE o.id = orderId
-    DB-->>Ctrl: orderDetail (san pham, dia chi, PTTT, trang_thai_tt)
+    DB-->>Ctrl: orderDetail (sản phẩm, địa chỉ, PTTT, trang_thai_tt)
     deactivate DB
     Ctrl-->>UI: 200 OK (orderDetail)
-    UI-->>Staff: Hien thi man hinh A4 (chi tiet don hang)
+    UI-->>Staff: Hiển thị màn hình A4 (chi tiết đơn hàng)
 
     %% BƯỚC 3: Kiểm tra hàng thực tế → rẽ nhánh (S2 trong AD2)
-    Note over Staff: Kiem tra hang thuc te tai quay (S2 trong AD2):<br/>dam bao do choi nguyen ven, du so luong
+    Note over Staff: Kiểm tra hàng thực tế tại quầy (S2 trong AD2):<br/>đảm bảo đồ chơi nguyên vẹn, đủ số lượng
 
-    alt Hang du & dat chuan – Xac nhan don (Luong chinh UC17)
+    alt Hàng đủ & đạt chuẩn – Xác nhận đơn (Luồng chính UC17)
 
-        Staff->>UI: Nhan "Xac nhan don hang" tren A4
+        Staff->>UI: Nhấn "Xác nhận đơn hàng" trên A4
         UI->>Ctrl: confirmOrder(orderId, staffId)
         Ctrl->>DB: checkOrderStatus(orderId)
         activate DB
-        Note over DB: Kiem tra ORDERS.trang_thai = 'Cho xac nhan'<br/>(Chong xung dot dong thoi – 6-E1 trong UC17)
+        Note over DB: Kiểm tra ORDERS.trang_thai = 'Chờ xác nhận'<br/>(Chống xung đột đồng thời – 6-E1 trong UC17)
         DB-->>Ctrl: currentStatus
         deactivate DB
 
-        Ctrl->>OrdSvc: updateStatus(orderId, "Da xac nhan")
+        Ctrl->>OrdSvc: updateStatus(orderId, "Đã xác nhận")
         activate OrdSvc
         Ctrl->>DB: updateOrderStatus(orderId, trangThai, staffId, thoiGian)
         activate DB
-        Note over DB: UPDATE ORDERS SET trang_thai='Da xac nhan',<br/>ma_nv_duyet=staffId, thoi_gian_duyet=NOW()
+        Note over DB: UPDATE ORDERS SET trang_thai='Đã xác nhận',<br/>ma_nv_duyet=staffId, thoi_gian_duyet=NOW()
         DB-->>Ctrl: updateSuccess
         deactivate DB
         OrdSvc-->>Ctrl: statusUpdated
         deactivate OrdSvc
 
-        Ctrl-->>UI: 200 OK (trangThai="Da xac nhan")
-        UI-->>Staff: Cap nhat A4 – nhan "Da xac nhan", mo nut "Bat dau dong goi"
-        Note over UI: He thong gui email xac nhan den KH<br/>(SYS3 trong AD2)
+        Ctrl-->>UI: 200 OK (trangThai="Đã xác nhận")
+        UI-->>Staff: Cập nhật A4 – nhãn "Đã xác nhận", mở nút "Bắt đầu đóng gói"
+        Note over UI: Hệ thống gửi email xác nhận đến KH<br/>(SYS3 trong AD2)
 
-    else Hang hong / Lech kho – Tu choi don (Luong 6a UC17)
+    else Hàng hỏng / Lệch kho – Từ chối đơn (Luồng 6a UC17)
 
-        Staff->>UI: Nhan "Tu choi don" & nhap ly do
+        Staff->>UI: Nhấn "Từ chối đơn" & nhập lý do
         UI->>Ctrl: rejectOrder(orderId, staffId, lyDo)
         Ctrl->>OrdSvc: cancel(orderId)
         activate OrdSvc
@@ -83,15 +83,15 @@ sequenceDiagram
         Ctrl->>DB: beginTransaction()
         activate DB
         Ctrl->>DB: updateOrderCancelled(orderId, lyDo)
-        Note over DB: UPDATE ORDERS SET trang_thai='Da huy',<br/>ly_do_huy=lyDo
+        Note over DB: UPDATE ORDERS SET trang_thai='Đã hủy',<br/>ly_do_huy=lyDo
         DB-->>Ctrl: orderCancelled
 
         Ctrl->>DB: restoreStock(orderItems)
-        Note over DB: UPDATE PRODUCT SET ton_kho = ton_kho + so_luong<br/>cho tung san pham trong ORDER_ITEM (BR2)
+        Note over DB: UPDATE PRODUCT SET ton_kho = ton_kho + so_luong<br/>cho từng sản phẩm trong ORDER_ITEM (BR2)
         DB-->>Ctrl: stockRestored
 
         Ctrl->>DB: insertInventoryLog(orderItems, lyDo)
-        Note over DB: INSERT INTO INVENTORY_LOG<br/>(ly_do='Huy don / Hong hang', bien_dong=+soLuong)
+        Note over DB: INSERT INTO INVENTORY_LOG<br/>(ly_do='Hủy đơn / Hỏng hàng', bien_dong=+soLuong)
         DB-->>Ctrl: logCreated
 
         Ctrl->>DB: commitTransaction()
@@ -100,9 +100,9 @@ sequenceDiagram
         OrdSvc-->>Ctrl: cancelDone
         deactivate OrdSvc
 
-        Ctrl-->>UI: 200 OK (trangThai="Da huy")
-        UI-->>Staff: Cap nhat A4 – nhan "Da huy"
-        Note over UI: He thong gui email huy don & ly do den KH<br/>(SYS1-SYS2 trong AD2)
+        Ctrl-->>UI: 200 OK (trangThai="Đã hủy")
+        UI-->>Staff: Cập nhật A4 – nhãn "Đã hủy"
+        Note over UI: Hệ thống gửi email hủy đơn & lý do đến KH<br/>(SYS1-SYS2 trong AD2)
 
     end
     deactivate Ctrl
@@ -142,8 +142,8 @@ sequenceDiagram
 ```mermaid
 sequenceDiagram
     autonumber
-    actor Staff as Nhan vien<br/>(Staff/Admin)
-    participant UI as :OrderUI<br/>(Man hinh A4)
+    actor Staff as Nhân viên<br/>(Staff/Admin)
+    participant UI as :OrderUI<br/>(Màn hình A4)
     participant Ctrl as :OrderController
     participant OrdSvc as :OrderService
     participant ShipSvc as :ShipmentService
@@ -151,73 +151,73 @@ sequenceDiagram
     participant DB as :Database
 
     %% BƯỚC 1: Mở form tạo vận đơn
-    Staff->>UI: Nhan "Tao van don" tren A4
+    Staff->>UI: Nhấn "Tạo vận đơn" trên A4
     activate UI
     UI->>Ctrl: initShipmentForm(orderId)
     activate Ctrl
     Ctrl->>DB: checkPrerequisite(orderId)
     activate DB
-    Note over DB: Kiem tra:<br/>1. trang_thai IN ('Da xac nhan','Dang dong goi')<br/>2. PTTT=Online thi trang_thai_tt='Da thanh toan'<br/>3. Chua co ban ghi SHIPMENT
+    Note over DB: Kiểm tra:<br/>1. trang_thai IN ('Đã xác nhận','Đang đóng gói')<br/>2. PTTT=Online thì trang_thai_tt='Đã thanh toán'<br/>3. Chưa có bản ghi SHIPMENT
     DB-->>Ctrl: prerequisiteOK (orderInfo, addressInfo, tienCOD)
     deactivate DB
     Ctrl-->>UI: 200 OK (shipmentFormData)
-    UI-->>Staff: Hien thi form tao van don (carrier, trong luong, COD, ghi chu)
+    UI-->>Staff: Hiển thị form tạo vận đơn (carrier, trọng lượng, COD, ghi chú)
 
     %% BƯỚC 2: Sinh mã vận đơn & gửi sang Carrier API
-    Staff->>UI: Chon carrier (GHN/GHTK) & nhan "Xac nhan tao van don"
+    Staff->>UI: Chọn carrier (GHN/GHTK) & nhấn "Xác nhận tạo vận đơn"
     UI->>Ctrl: createShipment(orderId, carrierId, shipmentParams)
 
     Ctrl->>ShipSvc: generateTrackingCode(orderId)
     activate ShipSvc
-    Note over ShipSvc: Sinh ma van don: WH-YYYYMMDD-XXXX<br/>(WH = tien to kho, YYYYMMDD = ngay tao,<br/>XXXX = so thu tu tang dan trong ngay – FR26)
+    Note over ShipSvc: Sinh mã vận đơn: WH-YYYYMMDD-XXXX<br/>(WH = tiền tố kho, YYYYMMDD = ngày tạo,<br/>XXXX = số thứ tự tăng dần trong ngày – FR26)
     ShipSvc-->>Ctrl: maVanDon (WH-YYYYMMDD-XXXX)
     deactivate ShipSvc
 
     Ctrl->>Carrier: registerShipment(maVanDon, addressInfo, shipmentParams, tienCOD)
     activate Carrier
-    Note over Carrier: Carrier xac thuc tuyen giao, kiem tra dia chi<br/>va tien thu ho COD (5-E1 / 5-E2 / 5-E3 trong UC21)
+    Note over Carrier: Carrier xác thực tuyến giao, kiểm tra địa chỉ<br/>và tiền thu hộ COD (5-E1 / 5-E2 / 5-E3 trong UC21)
     Carrier-->>Ctrl: carrierResult (status, carrierShipmentId / errorCode)
     deactivate Carrier
 
     %% BƯỚC 3: Rẽ nhánh theo kết quả Carrier
-    alt Carrier chap nhan van don (status=200)
+    alt Carrier chấp nhận vận đơn (status=200)
 
         Ctrl->>ShipSvc: createShipment()
         activate ShipSvc
         Ctrl->>DB: insertShipment(orderId, carrierId, maVanDon, phi, tienCOD)
         activate DB
-        Note over DB: INSERT INTO SHIPMENT<br/>(order_id, carrier_id, ma_van_don,<br/>phi, trang_thai='Cho lay hang', tien_cod)
+        Note over DB: INSERT INTO SHIPMENT<br/>(order_id, carrier_id, ma_van_don,<br/>phi, trang_thai='Chờ lấy hàng', tien_cod)
         DB-->>Ctrl: shipmentId
         deactivate DB
         ShipSvc-->>Ctrl: shipmentCreated
         deactivate ShipSvc
 
         Ctrl-->>UI: 201 Created (shipmentId, maVanDon)
-        UI-->>Staff: Hien thi phieu van don & nut "In phieu giao hang"
-        Note over UI: Xuat Shipping Label (barcode + QR)<br/>de in dan len kien hang do choi
+        UI-->>Staff: Hiển thị phiếu vận đơn & nút "In phiếu giao hàng"
+        Note over UI: Xuất Shipping Label (barcode + QR)<br/>để in dán lên kiện hàng đồ chơi
 
         %% BƯỚC 4: Bàn giao Shipper (C2 trong AD2)
-        Note over Staff: Shipper den quan nhan kien hang (C2 trong AD2)
-        Staff->>UI: Nhan "Ban giao cho Shipper" tren A4
+        Note over Staff: Shipper đến quán nhận kiện hàng (C2 trong AD2)
+        Staff->>UI: Nhấn "Bàn giao cho Shipper" trên A4
         UI->>Ctrl: handoverToShipper(orderId, shipmentId)
-        Ctrl->>OrdSvc: updateStatus(orderId, "Dang giao")
+        Ctrl->>OrdSvc: updateStatus(orderId, "Đang giao")
         activate OrdSvc
         Ctrl->>DB: updateHandoverStatus(orderId, shipmentId)
         activate DB
-        Note over DB: UPDATE SHIPMENT SET trang_thai='Dang van chuyen'<br/>UPDATE ORDERS SET trang_thai='Dang giao'
+        Note over DB: UPDATE SHIPMENT SET trang_thai='Đang vận chuyển'<br/>UPDATE ORDERS SET trang_thai='Đang giao'
         DB-->>Ctrl: handoverDone
         deactivate DB
         OrdSvc-->>Ctrl: statusUpdated
         deactivate OrdSvc
-        Ctrl-->>UI: 200 OK (trangThai="Dang giao", maVanDon)
-        UI-->>Staff: Cap nhat A4 – "Dang giao", hien ma tracking
-        Note over UI: He thong gui email + ma tracking cho KH<br/>(SYS5 trong AD2)
+        Ctrl-->>UI: 200 OK (trangThai="Đang giao", maVanDon)
+        UI-->>Staff: Cập nhật A4 – "Đang giao", hiện mã tracking
+        Note over UI: Hệ thống gửi email + mã tracking cho KH<br/>(SYS5 trong AD2)
 
-    else Carrier tu choi (Timeout / Dia chi loi / Qua tai trong)
+    else Carrier từ chối (Timeout / Địa chỉ lỗi / Quá tải trọng)
 
         Ctrl-->>UI: 502 Bad Gateway (errorCode, message)
-        UI-->>Staff: Thong bao loi Carrier – "Thu lai hoac doi carrier khac"
-        Note over UI: Don giu nguyen trang thai "Da xac nhan"<br/>Nhan vien co the thu lai hoac chon carrier khac<br/>(5-E1 / 5-E2 / 5-E3 trong UC21)
+        UI-->>Staff: Thông báo lỗi Carrier – "Thử lại hoặc đổi carrier khác"
+        Note over UI: Đơn giữ nguyên trạng thái "Đã xác nhận"<br/>Nhân viên có thể thử lại hoặc chọn carrier khác<br/>(5-E1 / 5-E2 / 5-E3 trong UC21)
 
     end
     deactivate Ctrl
